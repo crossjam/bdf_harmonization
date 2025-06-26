@@ -13,7 +13,7 @@ import typer
 from dotenv import load_dotenv
 from loguru import logger
 
-from apiserver.api_types import (
+from apiclient.api_types import (
     HarmonizationEnvelope,
     HarmonizationRequest,
     HarmonizationResponse,
@@ -21,7 +21,7 @@ from apiserver.api_types import (
     HarmonizationVariation,
 )
 
-HARMONIZATION_DEFAULT_API_URL = "https://apivm.netriasbdf.cloud/v1/harmonize"
+HARMONIZATION_DEFAULT_API_URL = "https://apiserver.netriasbdf.cloud/v1/harmonize"
 
 app = typer.Typer()
 
