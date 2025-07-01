@@ -16,7 +16,7 @@ dependencies = [
 ]
 
 [project.scripts]
-apiclient = "apiclient:main"
+apc = "apiclient:main"
 
 [build-system]
 requires = ["setuptools>=61"]

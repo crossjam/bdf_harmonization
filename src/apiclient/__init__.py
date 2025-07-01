@@ -1,2 +1,104 @@
+import json
+import os
+import sys
+
+from typing import List
+from typing_extensions import Annotated
+
+import httpx
+import typer
+
+from dotenv import load_dotenv
+from loguru import logger
+
+from apiclient.api_types import (
+    HarmonizationEnvelope,
+    HarmonizationRequest,
+    HarmonizationResponse,
+    HarmonizationResults,
+    HarmonizationVariation,
+)
+
+HARMONIZATION_DEFAULT_API_URL = "https://apiserver.netriasbdf.cloud/v1/harmonize"
+
+app = typer.Typer()
+
+def harmonize(req: HarmonizationRequest,
+              api_url: str,
+              api_key: str,
+              ssl_verify: True
+              ):
+    
+    request_headers = {
+        'x-api-key': api_key,
+        'Content-Type': 'application/json',
+        }
+
+    # print(req.model_dump())
+
+    logger.info("API URL: {}", api_url)
+    
+    res = httpx.post(api_url,
+                     data=req.model_dump_json(),
+                     headers=request_headers,
+                     timeout=60,
+                     verify=True,)
+
+    # print(res.text)
+    res.raise_for_status()
+    # print(res.json())
+    # return res.json()
+
+    return HarmonizationResponse(**res.json()['body'])
+
+@app.command()
+def about():
+    """CLI tooling for client scripting of the Netrias harmonization API
+    """
+
+    print("""
+    CLI tooling for client scripting of the Netrias harmonization API
+
+    Copyright 2024-25 Netrias LLC
+    """)
+
+              
+@app.command(name="harmonize")
+def harmonize_command(cde: int, variations: List[str],
+              api_url: Annotated[str, typer.Option(help="URL of harmonizaton API endpoint")] = "",
+              api_key: Annotated[str, typer.Option(help="API key for harmonizaton API endpoint")] = "",
+              ssl_verify: bool = True,
+              ):
+
+
+    if not api_url:
+        api_url = os.environ.get("HARMONIZATION_API_URL",
+                                 HARMONIZATION_DEFAULT_API_URL)
+    
+    if not api_key:
+        api_key = os.environ.get("HARMONIZATION_API_KEY", "")
+
+    def build_request(variation, cde):
+        return HarmonizationRequest(
+            body=HarmonizationVariation(
+                string_to_harmonize=variation,
+                cde_id=cde,
+                data_commons_id=1,
+                cde_version_id="v1"
+            )
+        )
+
+    requests = [build_request(variation, cde) for variation in variations]
+    
+    responses = [harmonize(r, api_url, api_key, ssl_verify) for r in requests]
+                 
+                           
+    # json.dump(harmonizations, fp=sys.stdout)
+    json.dump([r.model_dump() for r in responses], fp=sys.stdout)
+    # print(file=sys.stdout)
+
+
 def main() -> None:
-    print("Hello from apiclient!")
+    load_dotenv()
+    app()
+
