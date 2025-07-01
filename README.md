@@ -31,12 +31,12 @@ $ uv sync
 
 Third run the client script
 ```bash
-$ ./scripts/harmonize-terms about
+$ uv run apc about
 
     CLI tooling for client scripting of the Netrias harmonization API
 
     Copyright 2024-25 Netrias LLC
-$ ./scripts/harmonize-terms --help
+$ uv run apc --help
  Usage: harmonize-terms [OPTIONS] COMMAND [ARGS]...
 
 ╭─ Options ───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
@@ -48,6 +48,38 @@ $ ./scripts/harmonize-terms --help
 │ about       CLI tooling for client scripting of the Netrias harmonization API                                           │
 │ harmonize                                                                                                               │
 ╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+# the following assumes you have jq installed
+$ uv run apc harmonize 1002 nf | jq .
+2025-07-01 19:14:00.414 | INFO     | apiclient:harmonize:39 - API URL: https://apiserver.netriasbdf.cloud/v1/harmonize
+[
+  {
+    "variation": "nf",
+    "top_harmonizations": [
+      {
+        "option": "Neurofibromatosis type 1",
+        "confidence_score": 0.43795620437956206
+      },
+      {
+        "option": "NF2-related schwannomatosis",
+        "confidence_score": 0.21897810218978103
+      },
+      {
+        "option": "Not Applicable",
+        "confidence_score": 0.145985401459854
+      },
+      {
+        "option": "Noonan Syndrome",
+        "confidence_score": 0.10948905109489052
+      },
+      {
+        "option": "Schwannomatosis-NOS",
+        "confidence_score": 0.08759124087591241
+      }
+    ],
+    "cde_id": 1002,
+    "cde_key": "bts:Diagnosis"
+  }
+]
 ```
 
 ## Overview
