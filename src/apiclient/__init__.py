@@ -9,6 +9,7 @@ import httpx
 import typer
 
 from dotenv import load_dotenv
+from httpx import HTTPStatusError, RequestError
 from loguru import logger
 
 from apiclient.api_types import (
@@ -37,17 +38,29 @@ def harmonize(req: HarmonizationRequest,
     # print(req.model_dump())
 
     logger.info("API URL: {}", api_url)
-    
-    res = httpx.post(api_url,
-                     data=req.model_dump_json(),
-                     headers=request_headers,
-                     timeout=60,
-                     verify=True,)
 
-    # print(res.text)
-    res.raise_for_status()
-    # print(res.json())
-    # return res.json()
+    try:
+        res = httpx.post(api_url,
+                         data=req.model_dump_json(),
+                         headers=request_headers,
+                         timeout=60,
+                         verify=True,)
+
+        res.raise_for_status()
+
+    except HTTPStatusError as e:
+        logger.error("Received apiserver error response ({}) from {}",
+                     e.response.status_code, e.request.url)
+        typer.echo(e.response.text)
+        raise typer.Exit(code=1)
+
+    except RequestError as e:
+        typer.echo(f"Error: Network problem occurred while requesting {e.request.url} - {e}", err=True)
+        raise typer.Exit(code=1)
+
+    except Exception as e:
+        typer.echo(f"Unexpected error: {e}", err=True)
+        raise typer.Exit(code=1)
 
     return HarmonizationResponse(**res.json()['body'])
 
