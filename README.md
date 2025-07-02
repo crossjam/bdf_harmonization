@@ -5,7 +5,7 @@ A Python module for interacting with
 harmonization. Also a location for contact info and reference
 documentation.
 
-Generously supported by ARPA-A via funding from the [Biomedical Data
+Generously supported by ARPA-H via funding from the [Biomedical Data
 Fabric (BDF)
 Toolbox](https://arpa-h.gov/explore-funding/programs/arpa-h-bdf-toolbox)
 program.
