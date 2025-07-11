@@ -187,7 +187,7 @@ Saved harmonized table → harmonized_data.json
 | Need                     | How to adjust                                                                                  |
 | ------------------------ | ---------------------------------------------------------------------------------------------- |
 | **Add more schemas**     | Append IDs to `SCHEMAS`.                                                                       |
-| **Dynamic CDE IDs**      | Query the upcoming `/metadata/cdes` endpoint instead of the static `TARGET_TO_CDE_ID` mapping. |
+| **Dynamic CDE IDs**      | Query the `/v1/cdes/mappings` endpoint instead of the static `TARGET_TO_CDE_ID` mapping. |
 | **Batch performance**    | Harmonize rows in parallel with `concurrent.futures` or queue API calls.                       |
 | **Confidence threshold** | Change the `avg_top_similarity` logic or filter suggestions < 0.3 per column.                  |
 | **Fallback strategy**    | Keep original values (as above) or flag them for manual review.                                |
@@ -196,9 +196,9 @@ Saved harmonized table → harmonized_data.json
 
 ## 4 · Key Takeaways
 
-* `/cde-recommendation` can serve as an **auto‑classifier** for unknown tables.
-* Feeding its top CDE predictions into `/harmonize` closes the loop, generating fully standardised outputs ready for a data commons.
-* All steps are **idempotent**—rerun at any time to pick up schema updates or improved vocabularies.
+* `/cde-recommendation` can serve as an classifier for unknown tables.
+* Feeding its top CDE predictions into `/harmonize` closes the loop, generating fully standardised outputs.
+* All steps are **idempotent** - rerun at any time to pick up schema updates or improved vocabularies.
 
 ---
 
