@@ -1,60 +1,108 @@
-# Overview of the data in our system you are harmonizing against
+# Common Data Element and Schemas Overview
 
-Our system is designed to harmonized a users data against a common data element (CDE). A CDE is an entity that comes in two flavours - those with a controlled vocabulary (commonly called permissible values) and those without. Below is an example of both:
+### What is a Common Data Element?
+A **Common Data Element (CDE)** is a standardized, semantically defined data field - think of it as a spreadsheet column header whose meaning is precisely described. CDEs come in two varieties:
 
-CDE with permissible values:
+1. **With a controlled vocabulary** – also called *permissible values*; only those values are considered valid.
+2. **Without a controlled vocabulary** – any free‑text (or numeric) value is acceptable, though structure or validation rules may still apply.
+
+#### Example – CDE *with* permissible values
+
 ```jsonc
 {
-    "embedding_medium": {
-        "description": "A material that infiltrates and supports a specimen and preserves its shape and structure for sectioning and microscopy.",
-        "permissible_values": [
-            "Paraffin wax",
-            "Carbowax",
-            "Methacrylate",
-            "Epoxy Resin (Araldite)",
-            "Agar embedding",
-            "Celloidin media",
-            "Gelatin",
-            "Other",
-            "None",
-            "Unknown"
-        ]
-    }
+  "embedding_medium": {
+    "description": "A material that infiltrates and supports a specimen and preserves its shape and structure for sectioning and microscopy.",
+    "permissible_values": [
+      "Paraffin wax",
+      "Carbowax",
+      "Methacrylate",
+      "Epoxy Resin (Araldite)",
+      "Agar embedding",
+      "Celloidin media",
+      "Gelatin",
+      "Other",
+      "None",
+      "Unknown"
+    ]
+  }
 }
 ```
 
-CDE without permissible values:
+#### Example – CDE *without* permissible values
+
 ```jsonc
 {
-    "participant_id": {
-        "description": "A number or a string that may contain metadata information, for a participant who has taken part in the investigation or study.",
-        "permissible_values": []
-    }
+  "participant_id": {
+    "description": "A number or string (potentially containing metadata) that uniquely identifies a participant in a study.",
+    "permissible_values": []
+  }
 }
 ```
 
-An easy way to visualize these is to think of the CDE, such as `embedding_medium` as a column header in a spreadsheet. While the permissible values, such as `Carbowax` and `Agar embedding` as values in the rows below that header. In the case of the `participant_id` header the values in its column will simply be whatever the data creator entered.
+> **Analogy:** Treat the CDE (`embedding_medium`) as the column header and its permissible values (e.g., `Carbowax`, `Agar embedding`) as the valid entries in the rows beneath. For a CDE like `participant_id`, the rows can contain any value the data creator provides.
 
+### What is a Schema?
 
-The **/harmonize** endpoint is designed to standardize a free-text string, typically a value from a spreadsheet, to one of the permissible values for a selected CDE.
-- For more details on the harmonize endpoint please see the documentation here: <...>
-- For code examples of various use cases involving this endpoint please see the documentation here: <...>
+A **schema** is an *ordered collection of CDEs* that work together to describe a particular data‑capture scenario, assay, or clinical study domain.
+Think of a schema as the **template for a table**: each CDE defines one column, and the schema specifies which columns belong together, their order, validation rules, and version.
 
+Key attributes of a schema:
 
-These CDEs are typically grouped into schemas, examples of such groupings can be seen in the NCI's General Commons (GC) data model (https://github.com/CBIIT/cds-model/blob/main/model-desc/cds-model-props.yml), which consists of approximately 250 CDEs. While smaller sub schemas can be created from a larger data model - in the case of the Neurofibramatosis data model (https://github.com/nf-osi/nf-metadata-dictionary), curated by Sage Bionetworks, where they have created smaller schemas for specific purposes. Such as their RNA Seq schema (https://github.com/nf-osi/nf-metadata-dictionary/blob/batch-convert/registered-json-schemas/RNASeqTemplate-deref.json) comprising of 69 CDEs or their Imaging Assay schema (https://github.com/nf-osi/nf-metadata-dictionary/blob/batch-convert/registered-json-schemas/ImagingAssayTemplate-deref.json) consisting of 40 CDEs.
+| Attribute       | Description                                                                                                   |
+| --------------- | ------------------------------------------------------------------------------------------------------------- |
+| **Scope**       | The scientific or operational context it covers (e.g., RNA‑Seq metadata, clinical encounters).                |
+| **CDE set**     | The complete list of CDEs — including those that reference controlled vocabularies and those that do not.       |
+| **Version**     | Semantic version (e.g., `6.0.4`) that signals when CDE definitions or permissible values change.              |
+| **Source**      | The authority that curates the schema (NCI, Sage Bionetworks, etc.).                                          |
+| **Inheritance** | Schemas can extend or subset larger data models, inheriting parent CDEs but tailoring to a narrower use‑case. |
 
-Currently our system has the following schemas loaded:
-- NCI's General Commons (version 6.0.4)
-- NCI's Cancer Data Services (Version 5.0.2)
-- 4 sub-schemas of the Larger Neurofibramatosis data model
-    - RNA Seq
-    - Imaging Assay
-    - Clinical Assay
-    - ChIP Seq
+> **Analogy:** If a CDE is a column header, a *schema* is the entire spreadsheet template - laying out every column, its order, and the allowed values. Versioning guarantees that your data aligns with the same template your collaborators expect.
 
+---
 
-Figuring out what schema and/or CDE to harmonize some data against can be done with the **/cde-recommendation** endpoint.
-- For mored details on the cde-recommendation endpoint please see the documenation here: <...>
-- For code examples of various use cases involving this endpoint please see the documentation here: <...>
+### Core Endpoints
 
-Our system is designed to be flexible and scalable in order to accomodate almost any schema and CDEs. If you are interested in having your own data loaded into our system please reach out to use via the following steps: <Requesting Adding Data to the API>
+| Task                           | Endpoint              | Purpose                                                                                              |
+| ------------------------------ | --------------------- | ---------------------------------------------------------------------------------------------------- |
+| **Standardize a single value** | [`/harmonize`](harmonize.md)          | Maps one free‑text string to the best‑matching permissible value of a chosen CDE.                    |
+| **Discover the right CDE(s)**     | [`/cde-recommendation`](cde-recommendation.md) | Analyses a table (one or more column headers + values) and suggests the most likely CDE targets for each column. |
+
+> (See dedicated documentation for each endpoint for full request/response details and code snippets.)
+
+### Schemas Currently Deployed
+
+| Schema                     | Version  | CDE Count | Source           |
+| -------------------------- | -------- | --------- | ---------------- |
+| General Commons (GC)       | 6.0.4    | 245       | NCI              |
+| Cancer Data Services (CDS) | 5.0.2    | 250       | NCI              |
+| NF‑OSI RNA‑Seq             | *latest* | 69        | Sage Bionetworks |
+| NF‑OSI Imaging Assay       | *latest* | 40        | Sage Bionetworks |
+| NF‑OSI Clinical Assay      | *latest* | 43        | Sage Bionetworks |
+| NF‑OSI ChIP‑Seq            | *latest* | 64        | Sage Bionetworks |
+
+For the raw schema source files, refer to:
+
+* **GC and CDS data model:** [https://github.com/CBIIT/cds-model/blob/main/model-desc/cds-model-props.yml](https://github.com/CBIIT/cds-model/blob/main/model-desc/cds-model-props.yml)
+* **NF‑OSI schemas:** [https://github.com/nf-osi/nf-metadata-dictionary](https://github.com/nf-osi/nf-metadata-dictionary)
+
+### Choosing the Right Schema or CDE
+
+1. **Know your target CDE:** Use **/harmonize** to convert free‑text values to valid permissible values.
+2. **Unsure which CDE applies:** Use **/cde-recommendation** to get ranked suggestions based on sample column data.
+
+> For examples on how use the endponits seperately and together for various use cases please see the [use case documenation](example-use-cases.md).
+
+### Loading Additional Schemas
+
+Our platform is schema‑agnostic and can ingest virtually any well‑structured CDE collection. To request an import of your own CDEs and schema please reivew the [submission checklist and instructions](requesting-data-be-added.md).
+
+### Quick Links
+
+* Harmonize endpoint docs → *link here*
+* CDE Recommendation endpoint docs → [cde-recommendation.md](cde-recommendation.md)
+* Example use‑case notebooks → [example-use-cases.md](example-use-cases.md)
+* Data‑loading request guide → [requesting-data-be-added.md](requesting-data-be-added.md)
+
+### Changelog
+
+* 2025‑07‑08 – Initial draft of CDE and Schema overview
