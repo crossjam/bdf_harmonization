@@ -98,7 +98,7 @@ Our platform is schema‑agnostic and can ingest virtually any well‑structured
 
 ### Quick Links
 
-* Harmonize endpoint docs → *link here*
+* Harmonize endpoint docs → [harmonize.md](harmonize.md)
 * CDE Recommendation endpoint docs → [cde-recommendation.md](cde-recommendation.md)
 * Example use‑case notebooks → [example-use-cases.md](example-use-cases.md)
 * Data‑loading request guide → [requesting-data-be-added.md](requesting-data-be-added.md)
