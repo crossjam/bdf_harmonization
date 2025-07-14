@@ -16,7 +16,7 @@
 
 The Netrias Harmonization platform provides REST endpoints and a Python CLI for:
 
-* **Schema discovery** – automatically find the best Common Data Element (CDE) for an arbitrary table column.
+* **CDE discovery** – automatically find the best Common Data Element (CDE) for an arbitrary table column.
 * **Value harmonization** – map free‑text cell values to controlled vocabularies.
 * **End‑to‑end pipelines** – batch‑convert entire spreadsheets into standards‑ready JSON.
 
