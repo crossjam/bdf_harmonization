@@ -10,7 +10,7 @@
 
 > **Turn messy biomedical metadata into clean, standards‑compliant records in just a few lines of code.**
 
-![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue)
+![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 </div>
 
