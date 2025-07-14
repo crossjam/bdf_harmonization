@@ -90,4 +90,4 @@ We gladly accept pull requests that improve docs, examples, or client code. Plea
 
 ## 📜 License
 
-© 2025 Netrias LLC — Released under the Apache 2.0 license.
+© 2025 Netrias LLC - Released under the Apache 2.0 license.
