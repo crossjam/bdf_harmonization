@@ -71,7 +71,7 @@ apc harmonize 1002 "nf" | jq .
 ## 🛣️ Roadmap
 
 * 🔍 **/mapping** endpoints for programmatic CDE‑ID lookup.
-* 🔄 **Versioned CDE support** — store multiple historical CDE releases and let clients specify which version to harmonize against.
+* 🔄 **Versioned CDE support** - store multiple historical CDE releases and let clients specify which version to harmonize against.
 * 🗂️ **Bulk upload** of TSV/CSV/Excel files.
 
 
