@@ -28,7 +28,7 @@ All requests to the **Harmonize** and **CDE Recommendation** endpoints require a
    * Your **API key**.
    * **Expiration / rotation schedule** (default: keys will **not** automatically expire at the 12 month mark but we will email you to cofirm you are still using it).
 
-4. **Store the key securely** –
+4. **Store the key securely**
 
    * **Never** commit keys to source control.
    * Prefer environment variables or AWS Secrets Manager.
