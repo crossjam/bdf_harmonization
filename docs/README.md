@@ -10,7 +10,7 @@
 
 > **Turn messy biomedical metadata into clean, standards‑compliant records in just a few lines of code.**
 
-![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue)  ![CI](https://img.shields.io/github/actions/workflow/status/netrias/apiclient/ci.yml?label=tests)  ![License](https://img.shields.io/github/license/netrias/apiclient)
+![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue)
 
 </div>
 
@@ -51,10 +51,11 @@ pip install git+https://github.com/netrias/apiclient
 
 ### 2 · Grab an API key
 
-See [`requesting-API-key.md`](requesting-API-key.md) and email the form to us. Store the key in an environment variable:
+See [`requesting-API-key.md`](requesting-API-key.md) and email the form to us. Store the key and URL in an environment variable:
 
 ```bash
 export NETRIAS_API_KEY="<YOUR_KEY>"
+export HARMONIZATION_API_URL="https://apiserver.netriasbdf.cloud/v1/harmonize"
 ```
 
 ### 3 · Harmonize a value in one command
