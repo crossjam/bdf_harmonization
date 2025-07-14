@@ -26,8 +26,7 @@ All requests to the **Harmonize** and **CDE Recommendation** endpoints require a
 3. **Approval & issuance** – Netrias will confirm receipt within *1 business day* and issue:
 
    * Your **API key**.
-   * **Initial rate‑limit allocation** (defaults: 300 req/min, 50 req/sec burst – subject to change).
-   * **Expiration / rotation schedule** (default: keys remain active for 6 months).
+   * **Expiration / rotation schedule** (default: keys will **not** automatically expire at the 12 month mark but we will email you to cofirm you are still using it).
 
 4. **Store the key securely** –
 
@@ -42,7 +41,6 @@ All requests to the **Harmonize** and **CDE Recommendation** endpoints require a
 | Action                | Contact                                                 | Typical SLA                           |
 | --------------------- | ------------------------------------------------------- | ------------------------------------- |
 | **Rotate / Revoke**   | Email [apikey@netrias.com](mailto:apikey@netrias.com)   | 4 business hours                      |
-| **Increase quota**    | Same as above                                           | 1 business day                        |
 | **Report compromise** | Same as above                                           | Immediate – key disabled upon receipt |
 
 ### Error Codes Related to API Keys
@@ -50,14 +48,6 @@ All requests to the **Harmonize** and **CDE Recommendation** endpoints require a
 | HTTP status             | Meaning                 | Recommended Fix                                         |
 | ----------------------- | ----------------------- | ------------------------------------------------------- |
 | `401 Unauthorized`      | Missing or invalid key. | Ensure the header is set and copy is correct.           |
-| `429 Too Many Requests` | Exceeded rate limit.    | Implement exponential back‑off or request a quota bump. |
-
-### Frequently Asked Questions
-
-* **Q: Can I have separate keys for dev and prod?**
-  **A:** Yes. Mention both environments in your email.
-* **Q: Do keys expire automatically?**
-  **A:** By default after 6 months. We send renewal reminders 2 weeks prior.
 
 ### Changelog
 

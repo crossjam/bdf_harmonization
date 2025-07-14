@@ -7,10 +7,11 @@ The **CDE Recommendation** endpoint analyzes a JSON representation of a tabular 
 ### HTTP Request
 
 ```
-POST {BASE_URL}/cde-recommendation
+POST {BASE_URL}/v1/cde-recommendation
 ```
 
-> **Production base URL**: `https://api.netriasbdf.cloud`
+> **Production base URL**: `https://apiserver.netriasbdf.cloud`
+> Replace `{BASE_URL}` with the appropriate environment.
 
 ### Required Headers
 
@@ -40,7 +41,7 @@ Send a JSON object with a single top‑level key `body` whose value contains:
 | Field           | Type     | Description                                                                                                                                         |
 | --------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `target_schema` | `string` | Specifies which schema to query. Current valid values: `"sage_chipseq"`, `"sage_rnaseq"`, `"sage_imagingassay"`, `"gc"`, `"cds"`. |
-| `data`          | `object` | Keys are **column names**. Each value is an **array** of raw cell values (strings, numbers, or `null`). **Arrays need not be the same length.**         |
+| `data`          | `object` | Keys are **column names / headers**. Each value is an **array** of raw cell values (strings, numbers, or `null`). **Arrays need to be the same length.**         |
 
 > **Note**: `null` or `None` values are ignored during similarity calculation.
 
@@ -50,13 +51,13 @@ Send a JSON object with a single top‑level key `body` whose value contains:
 {
   "statusCode": 200,
   "body": {
-    "sexAssigned": [
-      { "target": "SexEnum", "similarity": 0.9948 },
-      { "target": "BooleanEnum", "similarity": -0.0013 },
+    "donorAge": [
+      { "target": "age", "similarity": 0.9948 },
+      { "target": "ageUnit", "similarity": -0.0013 },
       ...
     ],
-    "libraryConstruction": [
-      { "target": "libraryStrand", "similarity": 0.9418 },
+    "clinicalDiagnosis": [
+      { "target": "diagnosis", "similarity": 0.9418 },
       ...
     ],
     ...
@@ -85,13 +86,14 @@ Same format as the **Harmonize** endpoint. The most common causes are:
 ```python
 import requests, json
 
-url = "https://api.netriasbdf.cloud/cde-recommendation"
+url = "https://apiserver.netriasbdf.cloud/v1/cde-recommendation"
 headers = {
     "Content-Type": "application/json",
     "x-api-key": "<YOUR_API_KEY>"
 }
 my_column_data = {
     "donorAge": [45, 60, 37],
+    "ageMeasure":      ["years", null, null],
     "clinicalDiagnosis": ["Melanoma", "Basal Cell Carcinoma", "Benign Nevus"],
     ...
 }
@@ -104,10 +106,6 @@ payload = {
 resp = requests.post(url, headers=headers, json=payload)
 print(resp.json())
 ```
-
-### Rate Limits
-
-*Same as Harmonize endpoint - TODO
 
 ### Changelog
 

@@ -33,17 +33,17 @@ import json, requests
 # CONFIGURATION
 # ---------------------------------------------------------------------
 API_KEY = "<PUT‑YOUR‑API‑KEY‑HERE>"
-CDE_REC_ENDPOINT = "https://api.netriasbdf.cloud/cde-recommendation"
-HARMONIZE_ENDPOINT = "https://api.netriasbdf.cloud/harmonize"
+CDE_REC_ENDPOINT = "https://apiserver.netriasbdf.cloud/v1/cde-recommendation"
+HARMONIZE_ENDPOINT = "https://apiserver.netriasbdf.cloud/v1/harmonize"
 
 # Candidate schemas to evaluate (keep this list updated as new ones roll in)
 SCHEMAS = [
-    "cds",
-    "gc",
-    "sage_chipseq",
-    "sage_rnaseq",
-    "sage_imagingassay",
-    "sage_clinicalassay",
+    "cds", #Cancer Data Services
+    "gc", #General COmmons
+    "sage_chipseq", #Sage Bionetworks ChIP Seq
+    "sage_rnaseq", #Sage Bionetworks RNA Seq
+    "sage_imagingassay", #Sage Bionetworks Imaging Assay
+    "sage_clinicalassay", #Sage Bionetworks Clinical Assay
 ]
 
 HEADERS = {
@@ -80,7 +80,7 @@ def avg_top_similarity(column_map: dict) -> float:
     return total / count if count else 0.0
 
 # ---------------------------------------------------------------------
-# STEP 1 · Find the best schema
+# STEP 1 - Find the best schema
 # ---------------------------------------------------------------------
 results = {}
 for schema in SCHEMAS:
@@ -105,22 +105,21 @@ best_schema = max(results, key=lambda s: results[s]["score"])
 print(f"Best schema → {best_schema} (score = {results[best_schema]['score']:.3f})")
 
 # ---------------------------------------------------------------------
-# STEP 2 · Extract top CDE suggestion per column for the best schema
+# STEP 2 - Extract top CDE suggestion per column for the best schema
 # ---------------------------------------------------------------------
 column_to_cde = {}
 for col, suggestions in results[best_schema]["mapping"].items():
     if suggestions:
         column_to_cde[col] = suggestions[0]["target"]  # highest similarity
 
-print("
-Column → CDE mapping:
-", json.dumps(column_to_cde, indent=2))
+print("Column → CDE mapping:", json.dumps(column_to_cde, indent=2))
 
 # ---------------------------------------------------------------------
-# STEP 3 · Harmonize every non‑null value in the table
+# STEP 3 - Harmonize every non‑null value in the table
 # ---------------------------------------------------------------------
 # In production you would retrieve CDE IDs from a metadata service.
 # We use a hard‑coded dictionary here for illustration only.
+# TODO: update this to use /v1/cdes/mappings
 TARGET_TO_CDE_ID = {
     "SexEnum": 1036,
     "ageUnit": 1003,
@@ -146,9 +145,9 @@ for col, values in RAW_DATA.items():
         payload = {
             "body": {
                 "string_to_harmonize": val,
-                "data_commons_id": 1,  # or your specific commons ID
+                "data_commons_id": 1,
                 "cde_id": cde_id,
-                "cde_version_id": "6v1",
+                "cde_version_id": "v1",
             }
         }
         r = requests.post(HARMONIZE_ENDPOINT, headers=HEADERS, json=payload)
@@ -159,8 +158,7 @@ for col, values in RAW_DATA.items():
 
 with open("harmonized_data.json", "w") as f:
     json.dump(harmonized, f, indent=2)
-print("
-Saved harmonized table → harmonized_data.json")
+print("Saved harmonized table → harmonized_data.json")
 ```
 
 ### Output Preview
@@ -188,7 +186,6 @@ Saved harmonized table → harmonized_data.json
 | ------------------------ | ---------------------------------------------------------------------------------------------- |
 | **Add more schemas**     | Append IDs to `SCHEMAS`.                                                                       |
 | **Dynamic CDE IDs**      | Query the `/v1/cdes/mappings` endpoint instead of the static `TARGET_TO_CDE_ID` mapping. |
-| **Batch performance**    | Harmonize rows in parallel with `concurrent.futures` or queue API calls.                       |
 | **Confidence threshold** | Change the `avg_top_similarity` logic or filter suggestions < 0.3 per column.                  |
 | **Fallback strategy**    | Keep original values (as above) or flag them for manual review.                                |
 

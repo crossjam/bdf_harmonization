@@ -8,11 +8,11 @@ Use this route when you need to map arbitrary user input to a CDE's permissible 
 ## HTTP Request
 
 ```
-POST {BASE_URL}/harmonize
+POST {BASE_URL}/v1/harmonize
 ```
 
-> **Production base URL**: `https://api.netriasbdf.cloud`
-> Replace `{BASE_URL}` with the appropriate environment (e.g. `https://staging‑api…`) when testing.
+> **Production base URL**: `https://apiserver.netriasbdf.cloud`
+> Replace `{BASE_URL}` with the appropriate environment.
 
 ### Required Headers
 
@@ -29,9 +29,9 @@ The body **must** be a JSON object with a single top‑level key, `body`, whose 
 {
   "body": {
     "string_to_harmonize": "aselection",   // REQUIRED – free text input
-    "data_commons_id": 1,                  // REQUIRED – integer ID of the data commons 
+    "data_commons_id": 1,                  // OPTIONAL – integer ID of the data commons (defaults to 1)
     "cde_id": 1001,                        // REQUIRED – integer ID of the CDE to match against
-    "cde_version_id": "1"               // REQUIRED – version identifier for the CDE set (must be set to 1)
+    "cde_version_id": "1"               // OPTIONAL – version identifier for the CDE set (defaults to 1)
   }
 }
 ```
@@ -39,9 +39,9 @@ The body **must** be a JSON object with a single top‑level key, `body`, whose 
 | Field                 | Type      | Description                                                                 |
 | --------------------- | --------- | --------------------------------------------------------------------------- |
 | `string_to_harmonize` | `string`  | Raw text to be normalized. **Must be defined by cient.**                    |
-| `data_commons_id`     | `integer` | Identifier of the target data commons (**must be set to 1**).                    |
+| `data_commons_id`     | `integer` | Identifier of the target data commons (**Defaults to 1**).                    |
 | `cde_id`              | `integer` | Identifier of the Common Data Element vocabulary. **Must be defined by cient.**|
-| `cde_version_id`      | `string`  | Specific version of the CDE to query (**must be set to 1**). |
+| `cde_version_id`      | `string`  | Specific version of the CDE to query (**Defaults to 1**). |
 
 ### Successful Response (`200 OK`)
 
@@ -86,7 +86,7 @@ The body **must** be a JSON object with a single top‑level key, `body`, whose 
 ```python
 import requests, json
 
-url = "https://api.netriasbdf.cloud/harmonize"
+url = "https://apiserver.netriasbdf.cloud/v1/harmonize"
 headers = {
     "Content-Type": "application/json",
     "x-api-key": "<YOUR_API_KEY>"
@@ -110,12 +110,8 @@ curl -X POST \
   -H "Content-Type: application/json" \
   -H "x-api-key: <YOUR_API_KEY>" \
   -d '{"body":{"string_to_harmonize":"aselection","data_commons_id":1,"cde_id":1001,"cde_version_id":"1"}}' \
-  https://api.netriasbdf.cloud/harmonize
+  https://apiserver.netriasbdf.cloud/v1/harmonize
 ```
-
-## Rate Limits
-
-*TODO – clarify rate‑limit policy (requests per minute/hour and burst behaviour).*
 
 ## Changelog
 
