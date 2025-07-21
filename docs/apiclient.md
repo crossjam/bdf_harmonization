@@ -33,15 +33,17 @@ $ uv run apc about
 $ uv run apc --help
  Usage: harmonize-terms [OPTIONS] COMMAND [ARGS]...
 
-╭─ Options ───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ --install-completion          Install completion for the current shell.                                                 │
-│ --show-completion             Show completion for the current shell, to copy it or customize the installation.          │
-│ --help                        Show this message and exit.                                                               │
-╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-╭─ Commands ──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ about       CLI tooling for client scripting of the Netrias harmonization API                                           │
-│ harmonize                                                                                                               │
-╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --install-completion          Install completion for the current shell.                                                                    │
+│ --show-completion             Show completion for the current shell, to copy it or customize the installation.                             │
+│ --help                        Show this message and exit.                                                                                  │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Commands ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ about                CLI tooling for client scripting of the Netrias harmonization API                                                     │
+│ harmonize            Harmonize variations against a CDE                                                                                    │
+│ cde-recommendation   Recommend CDEs to harmonize tabular data                                                                              │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
 # the following assumes you have jq installed
 $ uv run apc harmonize 1002 nf | jq .
 2025-07-01 19:14:00.414 | INFO     | apiclient:harmonize:39 - API URL: https://apiserver.netriasbdf.cloud/v1/harmonize

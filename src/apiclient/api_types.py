@@ -1,3 +1,5 @@
+from enum import Enum
+
 from pydantic import BaseModel
 
 
@@ -67,3 +69,20 @@ class HarmonizationEnvelope(BaseModel):
             ]
         }
     }
+
+class HarmonizationTable(BaseModel):
+    target_schema: str
+    data: dict[str, list[str | int | None]]
+
+
+class RecommendRequest(BaseModel):
+    body: HarmonizationTable
+
+class RecommendSchema(str, Enum):
+    sage_chipseq = "sage_chipseq"
+    sage_rnaseq = "sage_rnaseq"
+    sage_imagingassay = "sage_imagingassay"
+    gc = "gc"
+    cds = "cds"
+    
+    
