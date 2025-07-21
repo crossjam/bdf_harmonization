@@ -7,7 +7,7 @@ The **CDE Recommendation** endpoint analyzes a JSON representation of a tabular 
 ### HTTP Request
 
 ```
-POST {BASE_URL}/v0/cde-recommendation
+POST {BASE_URL}/v1/cde-recommendation
 ```
 
 > **Production base URL**: `https://apiserver.netriasbdf.cloud`
@@ -86,7 +86,7 @@ Same format as the **Harmonize** endpoint. The most common causes are:
 ```python
 import requests, json
 
-url = "https://apiserver.netriasbdf.cloud/v0/cde-recommendation"
+url = "https://apiserver.netriasbdf.cloud/v1/cde-recommendation"
 headers = {
     "Content-Type": "application/json",
     "x-api-key": "<YOUR_API_KEY>"
