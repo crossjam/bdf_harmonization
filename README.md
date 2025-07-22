@@ -35,7 +35,7 @@ Follow this sequence for a smooth on‑boarding. Each step links to a dedicated 
 |   5  | **Value Harmonization**   | [`harmonize.md`](docs/harmonize.md)                                                     | Convert raw values into permissible values.                      |
 |   6  | **Advanced Pipeline**     | [`example-use-cases.md`](docs/example-use-cases.md)                                     | Automate steps 4‑5 end‑to‑end on a whole table.                 |
 |   7  | **Swagger / OpenAPI**     | [https://apiserver.netriasbdf.cloud/docs](https://apiserver.netriasbdf.cloud/docs) | Interactive playground & full endpoint reference.               |
-|   8  | **Submit Your Own CDEs**  | [`requesting-data-be-added.md`](docs/requesting-data-be-added.md)                       | How to get your custom schemas loaded into the platform.        |
+|   8  | **Submit Your Own CDEs**  | [`requesting-data-be-added.md`](docs/requesting-data-be-added.md)                       | How to get your custom data loaded into the platform.        |
 
 > **Tip:** Bookmark the Swagger docs - they’re always up to date with the latest versions and error codes.
 
