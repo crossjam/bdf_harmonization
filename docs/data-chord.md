@@ -1,7 +1,7 @@
 # 
 
 
-# Data‑Chord UI – Guided Harmonization Workflow
+# Data Chord UI – Guided Harmonization Workflow
 
 > **Turn spreadsheets into standardized metadata without writing code.**
 
@@ -49,13 +49,15 @@ docker run \
 
 ## Authentication
 
-* The UI forwards your **`HARMONIZATION_APP_KEY`** to the API—no keys are stored server‑side.
+* The UI forwards your **`HARMONIZATION_APP_KEY`** to the API - no keys are stored server‑side.
 
 ---
 
 ## Roadmap
 
-* **TODO** – 
+* **Whole‑spreadsheet harmonization** – process entire CSV/Excel files in one click
+* **Workflow refinements** driven by user feedback
+* **Alternative distribution** – investigate a hosted web‑app version
 
 ---
 
@@ -65,4 +67,6 @@ The Data Chord UI is released under Apache 2.0. For bug reports or feature requ
 
 ### Changelog
 
-* 2025‑07‑22 – Added initial draft .
+* 2025‑07‑22 – Added initial draft.
+
+
