@@ -55,8 +55,7 @@ docker run \
 
 ## Roadmap
 
-* **Session persistence** – resume unfinished harmonizations after refresh
-* **Batch CLI wrapper** around the container for headless use
+* **TODO** – 
 
 ---
 
