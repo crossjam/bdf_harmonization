@@ -41,7 +41,7 @@ Follow this sequence for a smooth on‑boarding. Each step links to a dedicated 
 
 ---
 
-## 🚀 Quick Start
+## 🚀 No Code Quick Start
 
 ### 1 · Install the Python client
 
@@ -64,7 +64,7 @@ export HARMONIZATION_API_URL="https://apiserver.netriasbdf.cloud/v1/harmonize"
 apc harmonize 1006 "nf" | jq .
 ```
 
-*(Maps the string “nf” against the **diagnosis** CDE in Sage Bionetworks' Neurofibromatosis (NF) data modeland prints the ranked options.)*
+*(Maps the string “nf” against the **diagnosis** CDE in Sage Bionetworks' Neurofibromatosis (NF) data model and prints the ranked options.)*
 
 ## 🛣️ Roadmap
 

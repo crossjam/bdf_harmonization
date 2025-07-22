@@ -1,16 +1,16 @@
-## API Key Provisioning Guide
+# API Key Provisioning Guide
 
-### Overview
+## Overview
 
 All requests to the **Harmonize** and **CDE Recommendation** endpoints require an `x-api-key` header. Developers must obtain this key from Netrias before integrating our services into client applications or workflows.
 
-### Who Can Request a Key?
+## Who Can Request a Key?
 
 * BDF Performers.
 * NIH Staff.
 * For third‑party integrators, a mutual NDA and data‑use agreement must be in place first.
 
-### Request Process
+## Request Process
 
 1. **Prepare your details** – Collect the following information:
 
@@ -21,7 +21,7 @@ All requests to the **Harmonize** and **CDE Recommendation** endpoints require a
    | **Intended use‑case**              | Brief description (e.g., “Prototype UI for clinical data harmonization”). |
    | **Estimated call volume**          | Requests per day (rough order‑of‑magnitude).                              |
 
-2. **Submit your request** – Email the above details to **Netrias** at **[apikey@netrias.com](mailto:apikeys@netrias.com)** with subject line **“API Key Request – Netrias BDF”**.
+2. **Submit your request** – Email the above details to **Netrias** at **[bdf_strides@netrias.com](mailto:bdf_strides@netrias.com)** with subject line **“API Key Request – Netrias BDF”**.
 
 3. **Approval & issuance** – Netrias will confirm receipt within *1 business day* and issue:
 
@@ -36,19 +36,19 @@ All requests to the **Harmonize** and **CDE Recommendation** endpoints require a
 
 5. **Start integrating** – Pass the key in the `x-api-key` header for every request.
 
-### Key Lifecycle Management
+## Key Lifecycle Management
 
 | Action                | Contact                                                 | Typical SLA                           |
 | --------------------- | ------------------------------------------------------- | ------------------------------------- |
-| **Rotate / Revoke**   | Email [apikey@netrias.com](mailto:apikey@netrias.com)   | 4 business hours                      |
+| **Rotate / Revoke**   | Email [bdf_strides@netrias.com](mailto:bdf_strides@netrias.com)   | 4 business hours                      |
 | **Report compromise** | Same as above                                           | Immediate – key disabled upon receipt |
 
-### Error Codes Related to API Keys
+## Error Codes Related to API Keys
 
 | HTTP status             | Meaning                 | Recommended Fix                                         |
 | ----------------------- | ----------------------- | ------------------------------------------------------- |
 | `401 Unauthorized`      | Missing or invalid key. | Ensure the header is set and copy is correct.           |
 
-### Changelog
+## Changelog
 
 * 2025‑07‑08 – Initial draft of API Key Provisioning Guide.

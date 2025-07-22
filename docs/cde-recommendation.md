@@ -1,10 +1,10 @@
-## CDE Recommendation Endpoint Documentation
+# CDE Recommendation Endpoint Documentation
 
-### Overview
+## Overview
 
 The **CDE Recommendation** endpoint analyzes a JSON representation of a tabular payload and returns, for each column, the most likely Common Data Element (CDE) targets along with similarity scores. Use this route when you need automated schema mapping or column‑to‑CDE suggestions before harmonization of the column values.
 
-### HTTP Request
+## HTTP Request
 
 ```
 POST {BASE_URL}/v1/cde-recommendation
@@ -13,14 +13,14 @@ POST {BASE_URL}/v1/cde-recommendation
 > **Production base URL**: `https://apiserver.netriasbdf.cloud`
 > Replace `{BASE_URL}` with the appropriate environment.
 
-### Required Headers
+## Required Headers
 
 | Header         | Example            | Description                   |
 | -------------- | ------------------ | ----------------------------- |
 | `Content-Type` | `application/json` | Payload must be JSON‑encoded. |
 | `x-api-key`    | `abcdef123456`     | Your issued API key.          |
 
-### Request Body
+## Request Body
 
 Send a JSON object with a single top‑level key `body` whose value contains:
 
@@ -45,7 +45,7 @@ Send a JSON object with a single top‑level key `body` whose value contains:
 
 > **Note**: `null` or `None` values are ignored during similarity calculation.
 
-### Successful Response (`200 OK`)
+## Successful Response (`200 OK`)
 
 ```json
 {
@@ -72,7 +72,7 @@ For each column key, up to **five** candidate objects are returned, ordered by d
 | `target`     | `string` | Name of the suggested CDE within the selected schema.                                            |
 | `similarity` | `float`  | Similarity between the column+values and the CDE definition. Values can be negative if the model believes the match is poor. |
 
-### Error Responses
+## Error Responses
 
 Same format as the **Harmonize** endpoint. The most common causes are:
 
@@ -81,7 +81,7 @@ Same format as the **Harmonize** endpoint. The most common causes are:
 | `400 Bad Request` | `target_schema` missing/invalid or `data` is empty. |
 | `404 Not Found`   | Unknown `target_schema`.                            |
 
-### Example – Python
+## Example – Python
 
 ```python
 import requests, json
@@ -107,7 +107,7 @@ resp = requests.post(url, headers=headers, json=payload)
 print(resp.json())
 ```
 
-### Changelog
+## Changelog
 
 * 2025-07-08 – Initial draft.
 
