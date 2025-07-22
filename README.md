@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://netrias.com">
-    <img src="docs/NETRIAS Logotype_Full Color RGB.png" height="150">
+    <img src="docs/images/NETRIAS Logotype_Full Color RGB.png" height="150">
   </a>
 </p>
 
@@ -30,12 +30,13 @@ Follow this sequence for a smooth on‑boarding. Each step links to a dedicated 
 | :--: | ------------------------- | ---------------------------------------------------------------------------------- | --------------------------------------------------------------- |
 |   1  | **What We Harmonize**     | [`what-we-harmonize.md`](docs/what-we-harmonize.md)                                     | Learn the core concepts & data models (CDEs + Schemas).         |
 |   2  | **Request an API Key**    | [`requesting-API-key.md`](docs/requesting-API-key.md)                                   | Get your credentials to call the service.                       |
-|   3  | **Install the CLI**       | [`apiclient.md`](docs/apiclient.md)                                                     | Quick local setup for scripting & command‑line experimentation. |
-|   4  | **CDE Recommendation** | [`cde-recommendation.md`](docs/cde-recommendation.md)                                   | Discover which CDEs match your columns.                  |
-|   5  | **Value Harmonization**   | [`harmonize.md`](docs/harmonize.md)                                                     | Convert raw values into permissible values.                      |
-|   6  | **Advanced Pipeline**     | [`example-use-cases.md`](docs/example-use-cases.md)                                     | Automate steps 4‑5 end‑to‑end on a whole table.                 |
-|   7  | **Swagger / OpenAPI**     | [https://apiserver.netriasbdf.cloud/docs](https://apiserver.netriasbdf.cloud/docs) | Interactive playground & full endpoint reference.               |
-|   8  | **Submit Your Own CDEs**  | [`requesting-data-be-added.md`](docs/requesting-data-be-added.md)                       | How to get your custom data loaded into the platform.        |
+|   3  | **Install the CLI Tool**       | [`apiclient.md`](docs/apiclient.md)                                                     | Quick local setup for scripting & command‑line experimentation. |
+|   4  | **Install the UI Tool**       | [`data-chord.md`](docs/data-chord.md)                                                     | No-code user interface for guided harmoization. |
+|   5  | **CDE Recommendation** | [`cde-recommendation.md`](docs/cde-recommendation.md)                                   | Discover which CDEs match your columns.                  |
+|   6  | **Value Harmonization**   | [`harmonize.md`](docs/harmonize.md)                                                     | Convert raw values into permissible values.                      |
+|   7  | **Advanced Pipeline**     | [`example-use-cases.md`](docs/example-use-cases.md)                                     | Automate steps 4‑5 end‑to‑end on a whole table.                 |
+|   8  | **Swagger / OpenAPI**     | [https://apiserver.netriasbdf.cloud/docs](https://apiserver.netriasbdf.cloud/docs) | Interactive playground & full endpoint reference.               |
+|   9  | **Submit Your Own CDEs**  | [`requesting-data-be-added.md`](docs/requesting-data-be-added.md)                       | How to get your custom data loaded into the platform.        |
 
 > **Tip:** Bookmark the Swagger docs - they’re always up to date with the latest versions and error codes.
 

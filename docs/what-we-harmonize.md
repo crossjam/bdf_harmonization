@@ -3,7 +3,7 @@
 ### What is a Common Data Element?
 A **Common Data Element (CDE)** is a standardized, semantically defined data field - think of it as a spreadsheet column header whose meaning is precisely described. CDEs come in two varieties:
 
-1. **With a controlled vocabulary** – also called *permissible values*; only those values are considered valid.
+1. **With a controlled vocabulary** – also called *permissible values or standards*; only those values are considered valid.
 2. **Without a controlled vocabulary** – any free‑text (or numeric) value is acceptable, though structure or validation rules may still apply.
 
 #### Example – CDE *with* permissible values
@@ -94,7 +94,7 @@ For the raw schema source files, refer to:
 
 ### Loading Additional Schemas
 
-Our platform is schema‑agnostic and can ingest virtually any well‑structured CDE collection. To request an import of your own CDEs and schema please reivew the [submission checklist and instructions](requesting-data-be-added.md).
+Our platform is data model agnostic and can ingest virtually any well‑structured CDE collection. To request an import of your own CDEs and schema please reivew the [submission checklist and instructions](requesting-data-be-added.md).
 
 ### Quick Links
 
