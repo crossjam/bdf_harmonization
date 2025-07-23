@@ -23,13 +23,16 @@ $ cd ./bdf_harmonization
 $ uv sync
 ```
 
-Third run the client script
+Third, obtain an api key from Netrias
+
+Fourth, run the client script
 ```bash
 $ uv run apc about
 
     CLI tooling for client scripting of the Netrias harmonization API
 
     Copyright 2024-25 Netrias LLC
+$ export HARMONIZATION_API_KEY=<your_api_key>
 $ uv run apc --help
  Usage: harmonize-terms [OPTIONS] COMMAND [ARGS]...
 
