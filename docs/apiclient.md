@@ -18,8 +18,8 @@ $ winget install --id=astral-sh.uv  -e
 
 Second initialize the repo
 ```bash
-$ git clone https://github.com/netrias/apiclient
-$ cd ./apiclient
+$ git clone https://github.com/netrias/bdf_harmonization
+$ cd ./bdf_harmonization
 $ uv sync
 ```
 
