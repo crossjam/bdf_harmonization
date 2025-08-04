@@ -1,11 +1,21 @@
 [project]
 name = "apiclient"
 version = "0.1.0"
-description = "Add your description here"
+description = "Turn messy biomedical metadata into clean, standards‑compliant records in just a few lines of code."
 readme = "README.md"
+
 authors = [
-    { name = "Brian Dennis", email = "bdennis+github@netrias.com" }
+    { name = "Patrick Boutet", email = "pboutet@netrias.com"},
+    { name = "Brian Dennis", email = "bdennis@netrias.com"},
 ]
+
+maintainers = [
+    { name = "Patrick Boutet", email = "pboutet@netrias.com"},
+    { name = "Brian Dennis", email = "bdennis@netrias.com"},
+]
+
+license = {file = "LICENSE"}
+
 requires-python = ">=3.11"
 dependencies = [
     "httpx>=0.28.1",
