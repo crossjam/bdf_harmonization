@@ -6,6 +6,17 @@
 
 <div align="center">
 
+# FOR ARCHIVAL PURPOSES ONLY
+
+_[I](https://github.com/crossjam) used to work at Netrias and
+contributed to [the original company
+repo](https://github.com/netrias/bdf_harmonization). I wanted to have
+a snapshot that described the Netrias approach in detail and captured
+my code contributions. Since we released it as Apache 2.0 I think I’m
+within rights to do so._
+
+_No further affiliation with or endorsement by Netrias is implied._
+
 # Netrias Harmonization API & Tooling
 
 > **Turn messy biomedical metadata into clean, standards‑compliant records in just a few lines of code.**
