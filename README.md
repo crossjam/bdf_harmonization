@@ -4,7 +4,6 @@
   </a>
 </p>
 
-<div align="center">
 
 # FOR ARCHIVAL PURPOSES ONLY
 
